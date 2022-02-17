@@ -1,0 +1,16 @@
+.marker-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.marker-btn.i {
+  /* width: 20px; */
+  /* height: 20px; */
+  /* font-size: 20px; */
+}
+
+/* .location { */
+  /* width: 20px; */
+  /* height: 20px; */
+/* } */

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
 
-import ErrorModal from "../../shared/components/UIElements/ErrorModal";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import UsersList from "../components/UsersList";
+import UsersList from '../components/UsersList';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
 const Users = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,19 +13,16 @@ const Users = () => {
     const sendRequest = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/api/users", {
-          validateStatus: (status) => status < 510,
-        });
+        const response = await fetch('http://localhost:5000/api/users');
 
-        let responseData = response.data;
+        const responseData = await response.json();
 
-        if (response.status > 400) {
+        if (!response.ok) {
           throw new Error(responseData.message);
         }
-        
+
         setLoadedUsers(responseData.users);
       } catch (err) {
-        setIsLoading(false);
         setError(err.message);
       }
       setIsLoading(false);
@@ -37,6 +33,7 @@ const Users = () => {
   const errorHandler = () => {
     setError(null);
   };
+
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={errorHandler} />

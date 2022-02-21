@@ -1,21 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+// import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 import "mapbox-gl/dist/mapbox-gl.js";
-//  import 'mapbox-gl/dist/mapbox-gl.css';
 
 import "./Map.css";
 
 const Map = (props) => {
-  const [viewPort, setViewPort] = useState({
-    latitude: 40.7484405,
-    longitude: -73.9878584,
-    zoom: 20,
-    width: "100vw",
-    height: "100vh",
-  });
-
   const { lat, lng } = props.center;
   return (
     <React.Fragment>
@@ -26,7 +17,7 @@ const Map = (props) => {
           zoom: props.zoom,
         }}
         mapboxAccessToken={
-          "pk.eyJ1IjoieXV2cmFqcHMiLCJhIjoiY2t6OGdoazI5MDV1ejJ2bXFhNnY2bnF1MCJ9.KDX92uVzseLOxmiGP5YqhQ"
+          process.env.MAPBOX_API_TOKEN
         }
         mapStyle="mapbox://styles/mapbox/streets-v11"
         // onMove={setViewPort}

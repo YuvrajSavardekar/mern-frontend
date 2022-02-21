@@ -4,6 +4,7 @@ export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
+  // useRef() also used to store data across re-renders
   const activeHttpRequests = useRef([]);
 
   const sendRequest = useCallback(

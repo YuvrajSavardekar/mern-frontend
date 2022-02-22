@@ -23,7 +23,6 @@ const ImageUpload = (props) => {
       setPreviewUrl(fileReader.result);
     }
     fileReader.readAsDataURL(file);
-    console.log(previewUrl);
   }, [file]);
 
   const pickerHandler = e => {

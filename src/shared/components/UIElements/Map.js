@@ -1,10 +1,15 @@
 import React from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
+import mapboxgl from 'mapbox-gl';
 // import LocationOnIcon from '@mui/icons-material/LocationOn';
+
 
 import "mapbox-gl/dist/mapbox-gl.js";
 
 import "./Map.css";
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 const Map = (props) => {
   const { lat, lng } = props.center;
@@ -17,7 +22,7 @@ const Map = (props) => {
           zoom: props.zoom,
         }}
         mapboxAccessToken={
-          process.env.MAPBOX_API_TOKEN
+          process.env.REACT_APP_MAPBOX_API_TOKEN
         }
         mapStyle="mapbox://styles/mapbox/streets-v11"
         // onMove={setViewPort}
